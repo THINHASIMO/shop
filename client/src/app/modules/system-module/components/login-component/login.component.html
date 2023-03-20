@@ -1,0 +1,42 @@
+<div class="bg-container p-input-filled" *ngIf="!isLogin">
+    <div class="content">
+        <div class="main-login flex flex-row justify-content-center">
+            <div class="login-sc">
+                <div class="header flex flex-column justify-content-center align-items-center">
+                    <h2>Admin Service</h2>
+                    <label>Vui lòng <strong>Đăng nhập</strong> tài khoản để quản lý hệ thống</label>
+                </div>
+                <div class="grid mt-3">
+                    <div class="col-12 grid spacing-inline">
+                        <div class="col-2 flex justify-content-end"><i class="font-bold pi pi-user"></i></div>
+                        <div class="col-10"><input class="w-full" placeholder="Tên đăng nhập hoặc Email" pInputText
+                                                   [(ngModel)]="userName"></div>
+                    </div>
+                    <div class="col-12 grid spacing-inline">
+                        <div class="col-2 flex justify-content-end"><i class="pi pi-lock font-bold"></i></div>
+                        <div class="col-10"><input class="w-full" placeholder="Mật khẩu" pInputText
+                                                   [(ngModel)]="password"></div>
+                    </div>
+                    <div class="col-12 grid spacing-inline">
+                        <div class="col-6 flex justify-content-end"></div>
+                        <div class="col-6"><input class="w-full" placeholder="Mã Captcha" pInputText></div>
+                    </div>
+                    <div class="col-12 grid flex align-items-center">
+                        <div class="col-6 flex justify-content-end">
+                            <p-checkbox name="savePassword" value="val1"></p-checkbox>
+                            <label>Ghi nhớ mật khẩu</label>
+                        </div>
+                        <div class="col-6 flex justify-content-end">
+                            <button (click)="onSubmit()" style="background:#141ed2"
+                                    class="tool-min-width hover:bg-indigo-500"
+                                    pButton label="Đăng nhập"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-menu">
+        <label>© 2023. Version 3.5.0.0 [20221229]</label>
+    </div>
+</div>

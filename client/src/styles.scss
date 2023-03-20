@@ -1,0 +1,213 @@
+@import "./assets/theme/deeppurple/theme-light.css";
+@import "../node_modules/primeflex/primeflex.css";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+
+body {
+  //background-color: #f7faf5;
+  background-color: #ffffff;
+  font-family: 'roboto', sans-serif;
+}
+
+.content {
+  margin: 0px 10px 0px 10px;
+  padding-top: 25px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.button-header {
+  display: flex;
+  justify-content: end;
+}
+
+.fix-but {
+  position: fixed;
+  top: 48px;
+  right: 43px;
+  z-index: 10;
+  background: #fffaf2;
+  border-radius: 22px;
+}
+
+.form-body {
+  width: 90vw;
+  margin: auto;
+  padding-top: 20px;
+  padding-left: 30px;
+}
+
+div > label {
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+input {
+  width: 100%;
+}
+
+p-calendar {
+  width: 100%;
+}
+
+.tool-right {
+  display: flex;
+  justify-content: end;
+}
+
+.dialog-85 {
+  width: 85vw;
+  height: 85vh;
+}
+
+.text-spacing {
+  text-align: end;
+}
+
+.header {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 20px
+}
+
+.spacing-inline {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex-direction: row;
+}
+
+ul {
+  list-style: none;
+  font-size: 13px;
+  padding: 10px;
+}
+
+li {
+  padding: 1px 12px 0px 4px;
+}
+
+a {
+  text-decoration-line: none;
+  font-weight: bold;
+  color: #9B2335;
+}
+
+th {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.tool {
+  margin: 6px;
+  width: 120px;
+}
+
+.tool-auto-width {
+  margin: 6px;
+  width:auto;
+}
+
+.tool-min-width {
+  margin: 6px;
+  min-width: 140px;
+}
+
+.tool-large-width {
+  margin: 6px;
+  min-width: 160px;
+}
+
+.tool-large-width-200 {
+  margin: 6px;
+  min-width: 200px;
+}
+
+.tool-auto {
+  margin: 6px;
+  padding: 10px;
+  width: auto;
+}
+
+.op {
+  width: 60vw;
+  height: 60vh
+}
+
+.buttonBottomFixed {
+  position: fixed;
+  bottom: 3px;
+  width: 97%;
+  z-index: 1;
+  background:#ffffff;
+}
+
+.red-text {
+  color: red;
+  font-size: 16px;
+  padding-left:6px;
+  font-weight: bolder;
+}
+
+.items-center {
+  text-align: center;
+  width: 5%
+}
+
+.background {
+  width: 100%;
+  height: 80vh;
+  background-image: url("https://amymhaddad.s3.amazonaws.com/morocco-blue.png");
+}
+.btn-input {
+  height:2.5rem;
+}
+.row-items {
+  display:flex;
+  flex-direction:row;
+}
+.top-body {
+  padding-top: 2.8rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.header-text {
+  font-size: 15px;
+  font-weight: bold;
+}
+.dialog-mt-4 {
+  margin-top:1.6rem;
+}
+.header-top {
+  margin-top:1.6rem;
+  margin-left:0.4rem;
+  margin-right:0.4rem;
+}
+//'overflow-x': 'hidden',padding:'50px', height:'87vh'
+.letter {
+  overflow-x: hidden;
+  padding:5px 20px 25px 25px;
+  height:87vh;
+}
+
+.pointer {
+  cursor:pointer;
+}
+
+.p-disable {
+  background: #E5E4E2 !important;
+}
+
+.text-title {
+  font-size:0.9rem;
+  font-weight:bold;
+}
+.pi {
+  cursor: pointer;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+.flex-wrap-btn {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:end;
+}

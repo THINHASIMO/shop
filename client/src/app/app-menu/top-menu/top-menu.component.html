@@ -1,0 +1,54 @@
+<div class="main-menu" *ngIf="true">
+    <div class="col-12 flex align-content-center align-items-center frame-menu">
+        <div class=" flex justify-content-center">
+        </div>
+        <h4 class="text-main-menu">
+            <a class="btn" routerLink="/">
+                <label class="text-white cursor-pointer">
+                    QUẢN TRỊ HỆ THỐNG BÁN HÀNG
+                </label>
+            </a>
+        </h4>
+
+        <div class="text-menu pi pi-align-justify" (click)="clickEvent()"
+             [ngClass]="status && getScreenWidth <=850 ? 'success' : ''">
+        </div>
+        <div *ngIf="status  && getScreenWidth <=850" class="success">
+            <div class="toggle-menu">
+                <h3 style="color:#fff">QUẢN TRỊ HỆ THÔNG BÁN HÀNG <i (click)="clickEvent()"
+                                                                     class="pi pi-times-circle"></i></h3>
+                <ul *ngFor="let m of menu">
+                    <li>
+                        <span class="font-bold text-white">{{m.name}}</span>
+                        <p-panelMenu [model]="m.data" [style]="{'width':'auto'}"></p-panelMenu>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="router-menu">
+            <ul class="menu">
+                <li *ngFor="let m of menu">
+                    <span>{{m.name}} <i class="icon pi pi-angle-down"></i></span>
+                    <ul>
+                        <li>
+                            <p-panelMenu [model]="m.data" [style]="{'width':'auto'}"></p-panelMenu>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class=" flex justify-content-center" style="position: fixed; right: 2rem;z-index: 10">
+            <div class="router-menu">
+                <ul class="menu">
+                    <li>
+                        <span *ngIf="user"> {{user}} <i class="icon pi pi pi-user"></i></span>
+                    </li>
+                    <li (click)="logout()"><span>Đăng xuất <i class="icon pi pi-angle-right"></i></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<app-home *ngIf="isHome"></app-home>
+<router-outlet></router-outlet>
