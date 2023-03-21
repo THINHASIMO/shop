@@ -57,7 +57,7 @@ export class iComponentBase extends iFunction {
     }
 
     setTitle(isParentMenu = true) {
-        this.titleService.setTitle('MBer');
+        this.titleService.setTitle('Shop');
     }
 
     showMessage(iType: mType, strheader: any, strmessage: any, key?: string) {
