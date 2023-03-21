@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ProductController {
     @Autowired
@@ -17,12 +18,12 @@ public class ProductController {
         return service.saveProduct(product);
     }
 
-    @PostMapping("/products")
+    @PostMapping("/product/add-all")
     public List<Product> createProducts(@RequestBody List<Product> products) {
         return service.saveProducts(products);
     }
 
-    @GetMapping("/products")
+    @GetMapping("/product/get-all")
     public List<Product> getAllProducts() {
         return service.getAllProduct();
     }
