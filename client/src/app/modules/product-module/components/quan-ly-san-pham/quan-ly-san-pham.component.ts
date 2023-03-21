@@ -10,12 +10,16 @@ import {ProductService} from '../../product.service';
 })
 export class QuanLySanPhamComponent extends iComponentBase implements OnInit {
 
+    products: any;
+
     constructor(public msg: MessageService, public title: Title, private product: ProductService) {
         super(msg, title);
     }
 
     ngOnInit(): void {
-        this.product.getAllProduct('').subscribe();
+        this.product.getAllProduct('').subscribe(data => {
+            this.products = data;
+        });
     }
 
 }

@@ -62,7 +62,8 @@ export let AppInject: Injector;
         PrimeNgModule,
         LoginComponent,
         BaseModule,
-        SystemModule
+        SystemModule,
+        ProductModule
     ],
     providers: [
         authInterceptorProviders,

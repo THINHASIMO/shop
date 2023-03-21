@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import { KeycloakService } from 'keycloak-angular';
+import {KeycloakService} from 'keycloak-angular';
 
 
 @Injectable({
@@ -14,27 +14,27 @@ export class CookieService {
     }
 
     getUserFromStorage() {
-        return this.getCurrentUser().username;
+        // return this.getCurrentUser().username;
     }
 
     getToken() {
-        return this.getCurrentUser().accessToken;
+        // return this.getCurrentUser().accessToken;
     }
 
     getCurrentUser() {
-        let currentUser = JSON.parse(this.getCookie('currentUser'));
-        if (!currentUser) {
-            const kc = this.keycloakService.getKeycloakInstance();
-            currentUser = {
-                accessToken: kc.token,
-                roles: this.keycloakService.getUserRoles(false),
-                username: kc.tokenParsed['preferred_username'],
-                refreshToken: kc.refreshToken
-            };
-            this.setCookie('currentUser',  JSON.stringify(currentUser));
-        }
-        
-        return currentUser;
+        // let currentUser = JSON.parse(this.getCookie('currentUser'));
+        // if (!currentUser) {
+        //     const kc = this.keycloakService.getKeycloakInstance();
+        //     currentUser = {
+        //         accessToken: kc.token,
+        //         roles: this.keycloakService.getUserRoles(false),
+        //         username: kc.tokenParsed['preferred_username'],
+        //         refreshToken: kc.refreshToken
+        //     };
+        //     this.setCookie('currentUser',  JSON.stringify(currentUser));
+        // }
+        //
+        // return currentUser;
     }
 
     setCookie(cName, data) {
@@ -64,12 +64,12 @@ export class CookieService {
     }
 
     clearCookies() {
-        const cookies = document.cookie.split(";");
+        const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i];
-            const eqPos = cookie.indexOf("=");
+            const eqPos = cookie.indexOf('=');
             const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
         }
     }
 }

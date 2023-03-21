@@ -8,12 +8,12 @@ export class ServiceGateway {
 export class ApiRoot {
     // Các phân hệ chính
     public static KEYCLOAK = 'auth/';
-    public static PRODUCT = ServiceGateway.GET_WAY_SHOP + '/product';
+    public static PRODUCT = ServiceGateway.GET_WAY_SHOP + 'product/';
 }
 
 export class ApiProduct {
     public static rootUrl = ApiRoot.PRODUCT;
-    public static GET_ALL_PRODUCT = ApiProduct.rootUrl;
+    public static GET_ALL_PRODUCT = ApiProduct.rootUrl + 'get-all';
 }
 
 export class ApiKeycloak {
