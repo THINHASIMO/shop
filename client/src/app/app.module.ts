@@ -9,7 +9,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {TopMenuComponent} from './app-menu/top-menu/top-menu.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {authInterceptorProviders} from './modules/base-module/service/MyHttpInterceptor';
 import {PrimeNgModule} from './modules/primeng-module/primeng.module';
 import {BaseModule} from './modules/base-module/base.module';
 import {SideNav} from './app-demo/side-nav/side-nav';
@@ -26,6 +25,7 @@ import {initializeKeycloak} from './init/keycloak-init.factory';
 import {KeycloakBearerInterceptor} from './init/KeycloakBearerInterceptor';
 import {SystemModule} from './modules/system-module/system-module';
 import {ProductModule} from './modules/product-module/product.module';
+import {authInterceptorProviders} from './modules/base-module/service/my-http.interceptor';
 
 export let AppInject: Injector;
 

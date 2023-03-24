@@ -30,6 +30,16 @@ public class Product {
     private String shop;
     private String content;
 
+    // Search
+    private int pageIndex;
+    private int pageSize;
+    public int getOrDefaultPageIndex() {
+        return pageIndex <= 0 ? 0 : pageIndex - 1;
+    }
+    public int getOrDefaultPageSize() {
+        return pageSize == 0 ? 10 : pageSize;
+    }
+
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateTime;
 

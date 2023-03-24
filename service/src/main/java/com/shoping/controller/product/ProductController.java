@@ -3,15 +3,21 @@ package com.shoping.controller.product;
 import com.shoping.entity.product.Product;
 import com.shoping.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class ProductController {
     @Autowired
     private ProductService service;
+
+    @PostMapping("/page")
+    public Page<Product> page(@RequestBody Product product) {
+        return service.page(product);
+    }
 
     @PostMapping("/product")
     public Product createProduct(@RequestBody Product product) {

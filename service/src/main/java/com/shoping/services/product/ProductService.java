@@ -3,6 +3,8 @@ package com.shoping.services.product;
 import com.shoping.entity.product.Product;
 import com.shoping.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,5 +42,13 @@ public class ProductService {
 //        exitsProduct.setPrice(product.getQuantity());
 //        return repository.save(exitsProduct);
         return null;
+    }
+
+    public Page<Product> page(Product product) {
+        return repository.findAllProductPage(
+                PageRequest.of(product.getOrDefaultPageIndex(), product.getOrDefaultPageSize()),
+                product.getId(),
+                product.getTitle()
+        );
     }
 }
