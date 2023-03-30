@@ -56,7 +56,14 @@ public class ProductServiceImp extends BaseServiceImpl<ProductEntity, Long> impl
     }
 
     @Override
-    public boolean deleteById(Long aLong) {
-        return false;
+    public boolean deleteById(Long id) {
+        try {
+            var pr = repository.findById(id).get();
+            pr.setDeleted(true);
+            repository.save(pr);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

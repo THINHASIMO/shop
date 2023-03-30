@@ -27,7 +27,7 @@ public class BaseServiceImpl<T extends BaseEntity, ID> implements BaseService<T,
         T t = (T) this.repository.findById(id).orElseGet(() -> {
             return null;
         });
-        return t != null && !t.isDeleted() ? t : null;
+        return t;
     }
 
     public List<T> getByIds(Collection<ID> ids) {

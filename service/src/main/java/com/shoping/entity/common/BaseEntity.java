@@ -1,127 +1,43 @@
 package com.shoping.entity.common;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModelProperty;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @MappedSuperclass
 @EntityListeners({AuditingEntityListener.class})
 public abstract class BaseEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @JsonIgnore
-    @Transient
-    protected Map<String, String> attributes = new HashMap();
+    private int pageIndex;
+    private int pageSize;
+    private boolean isDeleted;
 
-    @Column(name = "is_deleted")
-    @ApiModelProperty(hidden = true)
-    @JsonIgnore
-    private boolean isDeleted = false;
+    public int getOrDefaultPageIndex() {
+        return pageIndex <= 0 ? 0 : pageIndex - 1;
+    }
 
-    @Column(name = "created_by")
-    @ApiModelProperty(hidden = true)
-    @JsonIgnore
-    private Long createdBy;
+    public int getOrDefaultPageSize() {
+        return pageSize == 0 ? 10 : pageSize;
+    }
 
-    @CreatedDate
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Ho_Chi_Minh")
-    @ApiModelProperty(hidden = true)
-    @JsonIgnore
-    private Date createdAt = new Date();
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date createAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Ho_Chi_Minh")
-    @Column(name = "updated_by")
-    @ApiModelProperty(hidden = true)
-    @JsonIgnore
-    private Long updatedBy;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Ho_Chi_Minh")
-    @ApiModelProperty(hidden = true)
-    @JsonIgnore
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date updatedAt;
 
-    public BaseEntity() {
-    }
-
-    public Map<String, String> getAttributes() {
-        this.setAttributes();
-        return this.attributes;
-    }
-
-    public void setAttributes() {
-    }
-
-    public boolean isDeleted() {
-        return this.isDeleted;
-    }
-
-    public Long getCreatedBy() {
-        return this.createdBy;
-    }
-
-    public Date getCreatedAt() {
-        return this.createdAt;
-    }
-
-    public Long getUpdatedBy() {
-        return this.updatedBy;
-    }
-
-    public Date getUpdatedAt() {
-        return this.updatedAt;
-    }
-
-    @JsonIgnore
-    public void setAttributes(final Map<String, String> attributes) {
-        this.attributes = attributes;
-    }
-
-    @JsonIgnore
-    public void setDeleted(final boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    @JsonIgnore
-    public void setCreatedBy(final Long createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            timezone = "Asia/Ho_Chi_Minh"
-    )
-    @JsonIgnore
-    public void setCreatedAt(final Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @JsonIgnore
-    public void setUpdatedBy(final Long updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            timezone = "Asia/Ho_Chi_Minh"
-    )
-    @JsonIgnore
-    public void setUpdatedAt(final Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date publishedAt;
 }

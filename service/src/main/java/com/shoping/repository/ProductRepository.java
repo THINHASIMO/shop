@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Query(
             value = "select * from product p " +
-                    "where (:id is null or p.id = :id) " +
+                    "where (:id is null or p.id = :id) AND p.is_deleted = 0 " +
                     "and (:title is null or p.title like %:title%) ",
             nativeQuery = true)
     Page<ProductEntity> findAllProductPage(

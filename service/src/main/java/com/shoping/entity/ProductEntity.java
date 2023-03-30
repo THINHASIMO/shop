@@ -15,9 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "PRODUCT")
 public class ProductEntity extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     private Integer quantity;
     private Long price;
 
@@ -32,28 +30,5 @@ public class ProductEntity extends BaseEntity {
     private String content;
 
     // Search
-    private int pageIndex;
-    private int pageSize;
-    public int getOrDefaultPageIndex() {
-        return pageIndex <= 0 ? 0 : pageIndex - 1;
-    }
-    public int getOrDefaultPageSize() {
-        return pageSize == 0 ? 10 : pageSize;
-    }
-
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateTime;
-
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date updatedAt;
-
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date publishedAt;
-
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date startAt;
-
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date endsAt;
 }
 
