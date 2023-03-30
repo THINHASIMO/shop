@@ -10,6 +10,7 @@ import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class BaseServiceImpl<T extends BaseEntity, ID> implements BaseService<T, ID> {
@@ -49,8 +50,39 @@ public class BaseServiceImpl<T extends BaseEntity, ID> implements BaseService<T,
     }
 
     @Override
-    public List<T> createOrUpdateMany(Collection<ID> ids, Collection<T> ts) throws Exception {
-        return null;
+    public List<T> createOrUpdateMany(Collection<T> ts) throws Exception {
+        try {
+            List<Long> listIds = new ArrayList<Long>();
+            List<T> es = new ArrayList<T>();
+
+            ts.forEach(data -> {
+                if (data.getId() != null) {
+                    listIds.add(data.getId());
+                }
+            });
+
+            if (listIds.size() > 0) {
+                es = this.getByIds((List<ID>) listIds);
+                if (es.size() > 0) {
+                    es.forEach(e -> {
+                        ts.forEach(t -> {
+                            if (e.getId().equals(t.getId())) {
+                                BeanUtils.copyProperties(t, e, getNullPropertyNames(t));
+                                this.repository.save(e);
+                            }
+                        });
+                    });
+                }
+                return (List<T>) ts;
+            } else {
+                this.repository.saveAll(ts);
+                return (List<T>) ts;
+            }
+        } catch (Exception e) {
+            //  Block of code to handle errors
+            System.out.println("ERROR: createOrUpdateMany" + e);
+            return (List<T>) ts;
+        }
     }
 
     public boolean deleteById(ID id) {

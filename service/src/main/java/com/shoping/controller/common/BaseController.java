@@ -40,7 +40,12 @@ public abstract class BaseController<T, ID> {
 
     @PostMapping("/create-many")
     public ResponseEntity<Object> createMany(@Valid @RequestBody Collection<T> ts) throws Exception {
-        return ResponseHandler.generateResponse(HttpStatus.CREATED, "", baseService.createOrUpdateMany(null, ts));
+        return ResponseHandler.generateResponse(HttpStatus.CREATED, "", baseService.createOrUpdateMany(ts));
+    }
+
+    @PostMapping("/update-many")
+    public ResponseEntity<Object> updateMany(@Valid @RequestBody Collection<T> ts) throws Exception {
+        return ResponseHandler.generateResponse(HttpStatus.OK, "", baseService.createOrUpdateMany(ts));
     }
 
     @DeleteMapping("/delete/{id}")

@@ -12,7 +12,7 @@ public interface BaseService<T, ID> {
 
     T createOrUpdate(ID id, T t) throws Exception;
 
-    List<T> createOrUpdateMany(Collection<ID> ids, Collection<T> ts) throws Exception;
+    List<T> createOrUpdateMany(Collection<T> ts) throws Exception;
 
     boolean deleteById(ID id);
 }
