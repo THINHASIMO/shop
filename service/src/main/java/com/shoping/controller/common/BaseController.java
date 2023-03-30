@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.List;
 
 public abstract class BaseController<T, ID> {
     protected BaseService<T, ID> baseService;
@@ -34,6 +36,11 @@ public abstract class BaseController<T, ID> {
     public ResponseEntity<Object> update(@PathVariable("id") ID id,
                                          @Valid @RequestBody T t) throws Exception {
         return ResponseHandler.generateResponse(HttpStatus.OK, "", baseService.createOrUpdate(id, t));
+    }
+
+    @PostMapping("/create-many")
+    public ResponseEntity<Object> createMany(@Valid @RequestBody Collection<T> ts) throws Exception {
+        return ResponseHandler.generateResponse(HttpStatus.CREATED, "", baseService.createOrUpdateMany(null, ts));
     }
 
     @DeleteMapping("/delete/{id}")
