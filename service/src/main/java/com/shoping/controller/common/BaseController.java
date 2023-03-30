@@ -26,13 +26,13 @@ public abstract class BaseController<T, ID> {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@Valid @RequestBody T t) {
+    public ResponseEntity<Object> create(@Valid @RequestBody T t) throws Exception {
         return ResponseHandler.generateResponse(HttpStatus.CREATED, "", baseService.createOrUpdate(null, t));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> update(@PathVariable("id") ID id,
-                                         @Valid @RequestBody T t) {
+                                         @Valid @RequestBody T t) throws Exception {
         return ResponseHandler.generateResponse(HttpStatus.OK, "", baseService.createOrUpdate(id, t));
     }
 

@@ -17,61 +17,40 @@ import java.util.Map;
 @EntityListeners({AuditingEntityListener.class})
 public abstract class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @JsonIgnore
     @Transient
     protected Map<String, String> attributes = new HashMap();
-    @Column(
-            name = "is_deleted"
-    )
-    @ApiModelProperty(
-            hidden = true
-    )
+
+    @Column(name = "is_deleted")
+    @ApiModelProperty(hidden = true)
     @JsonIgnore
     private boolean isDeleted = false;
-    @Column(
-            name = "created_by"
-    )
-    @ApiModelProperty(
-            hidden = true
-    )
+
+    @Column(name = "created_by")
+    @ApiModelProperty(hidden = true)
     @JsonIgnore
     private Long createdBy;
+
     @CreatedDate
-    @Column(
-            name = "created_at"
-    )
+    @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            timezone = "Asia/Ho_Chi_Minh"
-    )
-    @ApiModelProperty(
-            hidden = true
-    )
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Ho_Chi_Minh")
+    @ApiModelProperty(hidden = true)
     @JsonIgnore
-    private Date createdAt;
-    @Column(
-            name = "updated_by"
-    )
-    @ApiModelProperty(
-            hidden = true
-    )
+    private Date createdAt = new Date();
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Ho_Chi_Minh")
+    @Column(name = "updated_by")
+    @ApiModelProperty(hidden = true)
     @JsonIgnore
     private Long updatedBy;
+
     @LastModifiedDate
-    @Column(
-            name = "updated_at"
-    )
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-            timezone = "Asia/Ho_Chi_Minh"
-    )
-    @ApiModelProperty(
-            hidden = true
-    )
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Ho_Chi_Minh")
+    @ApiModelProperty(hidden = true)
     @JsonIgnore
     private Date updatedAt;
 

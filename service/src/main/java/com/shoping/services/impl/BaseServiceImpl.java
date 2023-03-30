@@ -34,8 +34,8 @@ public class BaseServiceImpl<T extends BaseEntity, ID> implements BaseService<T,
         return this.repository.findAllById(ids);
     }
 
-    @Transactional
-    public T createOrUpdate(ID id, T t) {
+    @Override
+    public T createOrUpdate (ID id, T t) {
         if (id != null) {
             T e = this.getById(id);
             if (e != null) {

@@ -10,7 +10,7 @@ public interface BaseService<T, ID> {
 
     List<T> getByIds(Collection<ID> ids);
 
-    T createOrUpdate(ID id, T t);
+    T createOrUpdate(ID id, T t) throws Exception;
 
     boolean deleteById(ID id);
 }
