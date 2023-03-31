@@ -8,18 +8,10 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-
-public class ProductSearchDto extends SearchDto {
-    private Integer quantity;
-    private Long price;
-
+public class CategorySearchDto extends SearchDto {
+    private Integer parentId;
     private String title;
     private String metaTitle;
     private String slug;
-    private String summary;
-    private String type;
-    private String sku;
-    private String discount;
-    private String shop;
     private String content;
 }

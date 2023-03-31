@@ -21,10 +21,20 @@ public class ProductServiceImp extends BaseServiceImpl<ProductEntity, Long> impl
 
     @Override
     public Page<ProductEntity> page(ProductSearchDto productSearchDto) {
-        return repository.findAllProductPage(
+        return repository.productPage(
                 PageRequest.of(productSearchDto.getOrDefaultPageIndex(), productSearchDto.getOrDefaultPageSize()),
                 productSearchDto.getId(),
-                productSearchDto.getTitle());
+                productSearchDto.getPrice(),
+                productSearchDto.getQuantity(),
+                productSearchDto.getTitle(),
+                productSearchDto.getMetaTitle(),
+                productSearchDto.getSlug(),
+                productSearchDto.getSummary(),
+                productSearchDto.getType(),
+                productSearchDto.getSku(),
+                productSearchDto.getDiscount(),
+                productSearchDto.getShop(),
+                productSearchDto.getContent());
     }
 
 }

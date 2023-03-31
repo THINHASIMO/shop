@@ -10,7 +10,6 @@ import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class BaseServiceImpl<T extends BaseEntity, ID> implements BaseService<T, ID> {
@@ -50,34 +49,35 @@ public class BaseServiceImpl<T extends BaseEntity, ID> implements BaseService<T,
     }
 
     @Override
-    public List<T> createOrUpdateMany(Collection<T> ts) throws Exception {
+    public List<T> createOrUpdateMany(String isCorU, Collection<T> ts) throws Exception {
         try {
-            List<Long> listIds = new ArrayList<Long>();
-            List<T> es = new ArrayList<T>();
+            if (isCorU.equals("update")) {
+                List<Long> listIds = new ArrayList<Long>();
+                List<T> es = new ArrayList<T>();
 
-            ts.forEach(data -> {
-                if (data.getId() != null) {
-                    listIds.add(data.getId());
-                }
-            });
+                ts.forEach(data -> {
+                    if (data.getId() != null) {
+                        listIds.add(data.getId());
+                    }
+                });
 
-            if (listIds.size() > 0) {
-                es = this.getByIds((List<ID>) listIds);
-                if (es.size() > 0) {
-                    es.forEach(e -> {
-                        ts.forEach(t -> {
-                            if (e.getId().equals(t.getId())) {
-                                BeanUtils.copyProperties(t, e, getNullPropertyNames(t));
-                                this.repository.save(e);
-                            }
+                if (listIds.size() > 0) {
+                    es = this.getByIds((List<ID>) listIds);
+                    if (es.size() > 0) {
+                        es.forEach(e -> {
+                            ts.forEach(t -> {
+                                if (e.getId().equals(t.getId())) {
+                                    BeanUtils.copyProperties(t, e, getNullPropertyNames(t));
+                                    this.repository.save(e);
+                                }
+                            });
                         });
-                    });
+                    }
                 }
-                return (List<T>) ts;
             } else {
                 this.repository.saveAll(ts);
-                return (List<T>) ts;
             }
+            return (List<T>) ts;
         } catch (Exception e) {
             //  Block of code to handle errors
             System.out.println("ERROR: createOrUpdateMany" + e);
@@ -93,6 +93,22 @@ public class BaseServiceImpl<T extends BaseEntity, ID> implements BaseService<T,
             return true;
         } catch (Exception var3) {
             return false;
+        }
+    }
+
+    @Override
+    public List<T> deleteMany(Collection<ID> ids) throws Exception {
+        try {
+            List<T> temp = new ArrayList<T>();
+            List<T> ts = this.getByIds(ids);
+            ts.forEach(t -> {
+                t.setDeleted(true);
+                temp.add(t);
+            });
+            this.repository.saveAll(temp);
+            return (List<T>) temp;
+        } catch (Exception var3) {
+            return null;
         }
     }
 

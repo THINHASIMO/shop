@@ -33,7 +33,7 @@ public abstract class BaseEntity implements Serializable {
     }
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date createAt;
+    private Date createAt = new Date();
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date updatedAt;

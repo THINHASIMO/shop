@@ -5,5 +5,5 @@ import com.shoping.entity.ProductEntity;
 import com.shoping.services.common.BaseSearchService;
 import com.shoping.services.common.BaseService;
 
-public interface ProductService extends BaseService<ProductEntity, Long>,   BaseSearchService<ProductEntity, ProductSearchDto> {
+public interface ProductService extends BaseService<ProductEntity, Long>, BaseSearchService<ProductEntity, ProductSearchDto> {
 }

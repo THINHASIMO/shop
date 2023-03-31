@@ -12,7 +12,9 @@ public interface BaseService<T, ID> {
 
     T createOrUpdate(ID id, T t) throws Exception;
 
-    List<T> createOrUpdateMany(Collection<T> ts) throws Exception;
+    List<T> createOrUpdateMany(String isUorC, Collection<T> ts) throws Exception;
 
     boolean deleteById(ID id);
+
+    List<T> deleteMany(Collection<ID> ids) throws Exception;
 }

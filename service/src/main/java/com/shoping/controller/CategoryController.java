@@ -1,43 +1,38 @@
 package com.shoping.controller;
 
+import com.shoping.controller.common.BaseController;
+import com.shoping.controller.common.BaseSearchController;
+import com.shoping.dto.CategorySearchDto;
 import com.shoping.entity.CategoryEntity;
 import com.shoping.services.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.shoping.utils.ResponseHandler;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import javax.validation.Valid;
 
-public class CategoryController {
-    @Autowired
-    private CategoryService service;
 
-    @PostMapping("/category")
-    public CategoryEntity createCategory(@RequestBody CategoryEntity categoryEntity) {
-        return service.saveCategory(categoryEntity);
+@Slf4j
+@Log4j
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/category")
+public class CategoryController extends BaseController<CategoryEntity, Long> implements BaseSearchController<CategorySearchDto> {
+
+    private final CategoryService service;
+
+    public CategoryController(CategoryService service) {
+        super(service);
+        this.service = service;
     }
 
-    @PostMapping("/categories")
-    public List<CategoryEntity> createCategorys(@RequestBody List<CategoryEntity> categories) {
-        return service.saveCategories(categories);
-    }
-
-    @GetMapping("/categories")
-    public List<CategoryEntity> getAllCategories() {
-        return service.getAllCategory();
-    }
-
-    @GetMapping("/category/{id}")
-    public CategoryEntity getCategoryById(@PathVariable int id) {
-        return service.getCategoryById(id);
-    }
-
-    @PutMapping("/category")
-    public CategoryEntity updateCategoryByName(@RequestBody CategoryEntity categoryEntity) {
-        return service.updateCategory(categoryEntity);
-    }
-
-    @DeleteMapping("/category/{id}")
-    public String deleteCategory(@PathVariable int id) {
-        return service.deleteCategory(id);
+    @Override
+    public ResponseEntity<Object> getPage(@Valid CategorySearchDto categorySearchDto) {
+        return ResponseHandler.generateResponse(HttpStatus.OK, "", service.page(categorySearchDto));
     }
 }

@@ -28,7 +28,5 @@ public class ProductEntity extends BaseEntity {
     private String discount;
     private String shop;
     private String content;
-
-    // Search
 }
 

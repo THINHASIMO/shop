@@ -1,5 +1,6 @@
 package com.shoping.entity;
 
+import com.shoping.entity.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "CATEGORY")
-public class CategoryEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class CategoryEntity extends BaseEntity {
     private Integer parentId;
     private String title;
     private String metaTitle;

@@ -40,16 +40,21 @@ public abstract class BaseController<T, ID> {
 
     @PostMapping("/create-many")
     public ResponseEntity<Object> createMany(@Valid @RequestBody Collection<T> ts) throws Exception {
-        return ResponseHandler.generateResponse(HttpStatus.CREATED, "", baseService.createOrUpdateMany(ts));
+        return ResponseHandler.generateResponse(HttpStatus.CREATED, "", baseService.createOrUpdateMany("create", ts));
     }
 
     @PostMapping("/update-many")
     public ResponseEntity<Object> updateMany(@Valid @RequestBody Collection<T> ts) throws Exception {
-        return ResponseHandler.generateResponse(HttpStatus.OK, "", baseService.createOrUpdateMany(ts));
+        return ResponseHandler.generateResponse(HttpStatus.OK, "", baseService.createOrUpdateMany("update", ts));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> delete(@PathVariable("id") ID id) {
         return ResponseHandler.generateResponse(HttpStatus.ACCEPTED, "", baseService.deleteById(id));
+    }
+
+    @PostMapping("/delete-many")
+    public ResponseEntity<Object> deleteMany(@Valid @RequestBody Collection<ID> ids) throws Exception {
+        return ResponseHandler.generateResponse(HttpStatus.ACCEPTED, "", baseService.deleteMany(ids));
     }
 }
